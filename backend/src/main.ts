@@ -1,21 +1,18 @@
-import "dotenv/config";
 import cors from "cors";
 import express from "express";
+import { config } from "./config.js";
+import { mentionsRouter } from "./mentions/routes.js";
 
 const app = express();
-const port = Number(process.env.PORT ?? 4000);
 
-app.use(
-  cors({ origin: process.env.FRONTEND_ORIGIN ?? "http://localhost:3000" }),
-);
+app.use(cors({ origin: config.frontendOrigin }));
 app.use(express.json());
+app.use(mentionsRouter);
 
 app.get("/health", (_request, response) => {
   response.json({ status: "ok" });
 });
 
-app.listen(port, () => {
-  console.log(
-    `Media Monitor API scaffold listening on http://localhost:${port}`,
-  );
+app.listen(config.port, () => {
+  console.log(`Media Monitor API listening on http://localhost:${config.port}`);
 });
