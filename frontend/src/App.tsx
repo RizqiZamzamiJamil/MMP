@@ -1,8 +1,17 @@
-export default function App() {
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+
+function App() {
   return (
-    <main>
-      <h1>Media Monitor</h1>
-      <p>Dashboard scaffold. API integration will be added in a later stage.</p>
-    </main>
+    <div className="app">
+      <Navbar />
+      <main>
+        <Home />
+      </main>
+      <Footer />
+    </div>
   );
 }
+
+export default App;
